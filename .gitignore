@@ -6,5 +6,6 @@
 !asigner.py
 !only_sess.py
 !requirements.txt
+!README.md
 # ...even if they are in subdirectories
 !*/
