@@ -1,0 +1,10 @@
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!asigner.py
+!only_sess.py
+!requirements.txt
+# ...even if they are in subdirectories
+!*/
