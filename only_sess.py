@@ -325,20 +325,20 @@ def asigner(ruta, list_of_peaks, assign_extra_peaks, list_of_functions):
 def write_csv(asigned_peaks):
     outstring = ''
     for model in asigned_peaks:
-        q_head = ','.join([f'q_{peak}' for peak in asigned_peaks[model]])
-        A_head = ','.join([f'A_{peak}' for peak in asigned_peaks[model]])
-        w_head = ','.join([f'FWHM_{peak}' for peak in asigned_peaks[model]])
+        q_head = ','.join([f'q_{peak}' for peak in asigned_peaks[model] if 'x' not in peak])
+        A_head = ','.join([f'A_{peak}' for peak in asigned_peaks[model] if 'x' not in peak])
+        w_head = ','.join([f'FWHM_{peak}' for peak in asigned_peaks[model] if 'x' not in peak])
         header = ',' + q_head + ',' + A_head + ',' + w_head + '\n'
         
         outstring += header
-        qs = ','.join([str(asigned_peaks[model][peak][1]) for peak in asigned_peaks[model]])
+        qs = ','.join([str(asigned_peaks[model][peak][1]) for peak in asigned_peaks[model] if 'x' not in peak])
         try:
-            As = ','.join([str(asigned_peaks[model][peak][0] * asigned_peaks[model][peak][2] * ((1 - asigned_peaks[model][peak][3]) * np.sqrt(np.pi / np.log(2)) + asigned_peaks[model][peak][3] * np.pi)) for peak in asigned_peaks[model]])
+            As = ','.join([str(asigned_peaks[model][peak][0] * asigned_peaks[model][peak][2] * ((1 - asigned_peaks[model][peak][3]) * np.sqrt(np.pi / np.log(2)) + asigned_peaks[model][peak][3] * np.pi)) for peak in asigned_peaks[model] if 'x' not in peak])
         except IndexError:
             eta = 0
-            As = ','.join([str(asigned_peaks[model][peak][0] * asigned_peaks[model][peak][2] * ((1 - eta) * np.sqrt(np.pi / np.log(2)) + eta * np.pi)) for peak in asigned_peaks[model]])
+            As = ','.join([str(asigned_peaks[model][peak][0] * asigned_peaks[model][peak][2] * ((1 - eta) * np.sqrt(np.pi / np.log(2)) + eta * np.pi)) for peak in asigned_peaks[model] if 'x' not in peak])
 
-        ws = ','.join([str(asigned_peaks[model][peak][2] * 2) for peak in asigned_peaks[model]])
+        ws = ','.join([str(asigned_peaks[model][peak][2] * 2) for peak in asigned_peaks[model] if 'x' not in peak])
         outstring += model + ','+ qs + ',' + As + ',' + ws + '\n'
     return outstring
 
