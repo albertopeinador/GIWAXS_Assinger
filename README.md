@@ -6,12 +6,17 @@
 The `assigner.py` script is designed to manage and assign peaks fitted by Fityk. The script itself doesn't contain the ain logic, which for the most part is within the `only_sess.py`. In that module live all needed functions to assign the peaks, read the `.fit` file and write it all to a csv.
 
 ##  Use
-The intended use is through streamlit. The app is up directly on my streamlit account or you can run it locally. make sure to install all necessary packages (for example using conda):
+The intended use is through streamlit. The app is up directly on my streamlit account or you can run it locally. Make sure to install all necessary packages (for example using conda):
 ```bash
 git clone https://github.com/albertopeinador/GIWAXS_Assinger.git
 cd GIWAXS_Assigner
 conda install --file requirements.txt
 ```
+Then you can run the program with:
+```bash
+streamlit run asigner.py
+```
+
 The program itself should be easy to follow from there.
 
 You will be prompted to upload your Fityk session file (`.fit` file). Next some boxes asking you for the peak names (see `list_of_peaks`) and the functions you used to fit your peaks (see `list_of_functions`). Currently only PseudoVoigt and Gaussian are accounted for in the csv output, so keep this in mind. Then, some graphs will appear.
